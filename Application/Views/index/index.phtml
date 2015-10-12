@@ -1,0 +1,102 @@
+<form id="sitemap" class="form-horizontal" role="form" method="POST" ng-submit="generateSiteMap()">
+    <h3>Create site map</h3>
+    <div class="form-group">
+        <label for="siteUrl" class="col-sm-2 control-label">Url of the site</label>
+        <div class="col-sm-6">
+            <input ng-model="settings.siteUrl" type="url" pattern="https?://.+" class="form-control"
+               placeholder="http://example-site.com" required title="Not valid url!"
+            >
+        </div>
+    </div>
+
+    <div class="form-group">
+        <label for="siteUrl" class="col-sm-2 control-label">Depth of scan</label>
+        <div class="col-sm-8">
+            <fieldset>
+                <label for="onePage" class="checkbox-inline">
+                    <input ng-model="settings.depthScan" type="radio" name="depthScan" id="onePage" value="false" checked> Only current page
+                </label>
+                <label for="allPages" class="checkbox-inline">
+                    <input ng-model="settings.depthScan" type="radio" name="depthScan" id="allPages" value="true"> All pages
+                </label>
+            </fieldset>
+        </div>
+    </div>
+
+    <div class="form-group">
+        <label for="siteUrl" class="col-sm-2 control-label">Last modification </label>
+        <div class="col-sm-8">
+            <fieldset>
+                <label for="noneModifyData" class="checkbox-inline">
+                    <input ng-model="settings.modifyData" type="radio" name="modifyData" id="noneModifyData" value="false" checked> None
+                </label>
+                <label for="serverModifyData" class="checkbox-inline">
+                    <input ng-model="settings.modifyData" type="radio" name="modifyData" id="serverModifyData" value="true"> Use server's response
+                </label>
+            </fieldset>
+        </div>
+    </div>
+
+    <div class="form-group">
+        <label for="siteUrl" class="col-sm-2 control-label">Rung of the priority</label>
+        <div class="col-sm-8">
+            <fieldset>
+                <label for="nonePriority" class="checkbox-inline">
+                    <input ng-model="settings.priority" type="radio" name="priority" id="nonePriority" value="false" checked> None
+                </label>
+                <label for="serverPriority" class="checkbox-inline">
+                    <input ng-model="settings.priority" type="radio" name="priority" id="serverPriority" value="true"> Calculate automatically
+                </label>
+            </fieldset>
+        </div>
+    </div>
+
+    <div class="form-group">
+        <label for="siteUrl" class="col-sm-2 control-label">Change frequency</label>
+        <div class="col-sm-3">
+            <select ng-model="settings.frequencyUpdate" class="form-control" ng-options="item.name for item in items">
+            </select>
+        </div>
+    </div>
+
+    <div class="form-group">
+        <div class="col-sm-offset-2 col-sm-10">
+            <button type="submit" ng-disabled="isDisable" class="btn btn-primary">Generate</button>
+        </div>
+    </div>
+</form>
+
+<div ng-show="preloader" style="margin:0px 40% 20px">
+    <img id="preloader" src="<?php echo ROOT_PATH . 'public/images/wait.gif'?>">
+</div>
+
+<div ng-show="downloadLink" class="alert alert-success" role="alert">
+    Generation was successfully finished. You can <a href="/public/data/site_map.xml" download>download site map</a>
+</div>
+
+<div ng-show="errorMessage" class="alert alert-danger" role="alert">
+    <span class="sr-only">Error:</span>
+    <span ng-bind="errorMessageText"></span>
+</div>
+
+<div ng-show="showStatistic">
+    <table class="table table-condensed">
+        <tbody>
+        <tr>
+            <td style="width: 25%">Number of the links</td>
+            <td><span ng-bind="linksNumber"></span></td>
+        </tr>
+        <tr>
+            <td>Current page</td>
+            <td><span ng-bind="currentLink"></span></td>
+        </tr>
+        <tr>
+            <td>Links depth</td>
+            <td><span ng-bind="linksDepth"></span></td>
+        </tr>
+        <tr>
+            <td>Memory usage</td>
+            <td><span ng-bind="memory"></span> Mb</td>
+        </tr>
+    </table>
+</div>

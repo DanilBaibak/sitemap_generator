@@ -1,0 +1,7 @@
+server/config.js
+config/config.php
+node_modules/
+vendor/
+public/data
+composer.phar
+.idea/

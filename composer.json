@@ -1,0 +1,21 @@
+{
+    "name": "webchallenge/sitemap_generator",
+    "description": "Application generates sitemap for current url",
+    "authors": [
+        {
+            "name": "Danil Baibak",
+            "email": "danil.baibak@gmail.com"
+        }
+    ],
+    "minimum-stability": "dev",
+    "require": {
+        "phpunit/phpunit": "4.1.*",
+        "guzzlehttp/guzzle": "^6.1@dev"
+    },
+    "autoload": {
+        "psr-4": {
+            "Core\\": "Core",
+            "Application\\": "Application"
+        }
+    }
+}

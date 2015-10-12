@@ -1,0 +1,43 @@
+<html ng-app="sitemap">
+<head>
+    <title><?php echo $this->title; ?></title>
+
+    <meta content="<?php echo $this->description; ?>" name="description">
+    <meta content="<?php echo $this->keywords; ?>" name="keywords">
+
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta content="en-US" http-equiv="Content-Language" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <link href='http://fonts.googleapis.com/css?family=Droid+Sans' rel='stylesheet' type='text/css'>
+    <link href="<?php echo ROOT_PATH . "public/css/bootstrap.min.css"; ?>" type="text/css" rel="stylesheet"/>
+    <link href="<?php echo ROOT_PATH . "public/css/sticky-footer-navbar.css"; ?>" type="text/css" rel="stylesheet"/>
+
+    <script type="text/javascript" src="<?php echo ROOT_PATH . "node_modules/socket.io/node_modules/socket.io-client/socket.io.js"; ?>"></script>
+    <script type="text/javascript" src="<?php echo ROOT_PATH . "node_modules/angular/angular.min.js"; ?>"></script>
+
+    <script type="text/javascript" src="<?php echo ROOT_PATH . "public/js/sitemap.js"; ?>"></script>
+    <script type="text/javascript" src="<?php echo ROOT_PATH . "public/js/socketService.js"; ?>"></script>
+</head>
+
+<body>
+<nav class="navbar navbar-default navbar-fixed-top">
+    <div class="container">
+        <div class="navbar-header">
+            <a class="navbar-brand" href="/">Site map generator</a>
+        </div>
+    </div>
+</nav>
+<div id="main" class="container theme-showcase" role="main" ng-controller="MainController">
+    <div class="row">
+        <?php include_once($this->content); ?>
+    </div>
+</div>
+
+<footer class="footer">
+    <div class="container">
+        <p class="text-muted">Made by <a href="mailto:danil.baibak@gmail.com">Danil Baibak</a> © 2015</p>
+    </div>
+</footer>
+</body>
+</html>
